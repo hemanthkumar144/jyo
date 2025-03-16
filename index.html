@@ -5,11 +5,30 @@
   <title> Karamsi Jyosthna</title>
   <link rel="stylesheet" href="./style.css.css">
 	  <link rel="icon" type="image/png" href="https://iili.io/33vwY2n.png">
-<audio src="Ithandham.mp3" autoplay></audio>
+	<audio id="backgroundMusic" loop>
+	<source src="Ithandham.mp3" autoplay type="audio/mpeg">
+	</audio>
 </head>
 <body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let audio = document.getElementById("backgroundMusic");
 
-
+        // Try to play audio when the page loads
+        let playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Autoplay blocked, waiting for user interaction.");
+                
+                // Play music on first user interaction
+                document.addEventListener("click", function () {
+                    audio.play();
+                }, { once: true });
+            });
+        }
+    });
+  </script>
 
 </head>
 <body>
